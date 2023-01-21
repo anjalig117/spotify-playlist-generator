@@ -1,0 +1,88 @@
+{% extends "tracks/layout.html" %}
+
+{% load static %}
+
+{% block page %}
+<script type="text/javascript" src="{% static 'tracks/index1.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div >
+        {% if user.is_authenticated %}
+        <a href="{% url 'index' %}"><button class="btn btn-success">Homepage</button></a>
+    {% else %}
+       <div>
+        <img src="{% static 'tracks/b.jpg' %}" style="opacity: 0.5;">
+       <!--<button id="loginn">Login</button>-->
+
+       <div id="modal-form">
+        <div id="myModals" class="modals">
+
+            <!-- Modal content -->
+            <div class="modal-contents">
+              <span class="closes">&times;</span>
+              <div class="container" style="width: 69%;">
+                <div id="login_forms" class="mb-4">
+                    <h4 class="text-white text-center mb-3"><b>Log in to continue.</b></h4>
+                    
+                      <form action="{% url 'login' %}" method="post" class="mb-4"> 
+                          {% csrf_token %}
+                        <div class="form-group">
+                            <!--<label for="exampleInputEmail1" class="text-white">Name</label>-->
+                            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <!-- <label for="exampleInputEmail" class="text-white">Description</label> -->
+                            <input type="password" class="form-control" name="password" aria-describedby="emailHelp" placeholder="password">
+                        </div>
+                        <button type="submit" class="btn btn-secondary rounded-pill" style="width: 100%;">LOG IN</button>
+                      </form>
+                      <div class="hr-sect">OR</div>
+              
+                <p  class="text-white text-center">Don't have an account? <span id = 'register' style="text-decoration: underline;">SIGNUP</span></p>
+                    </div>
+
+                    
+
+              <div id="register-form">
+
+                <h4 class="text-white text-center mb-3"><b>Sign up for a free account.</b></h4>
+              <form action="{% url 'register' %}" method="post" class="mb-4"> 
+                {% csrf_token %}
+                <div class="form-group">
+                    <!--<label for="exampleInputEmail1" class="text-white">Name</label>-->
+                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="Email Address">
+                </div>
+
+                <div class="form-group">
+                    <!-- <label for="exampleInputEmail" class="text-white">Description</label> -->
+                    <input type="password" class="form-control" name="password" aria-describedby="emailHelp" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <input class="form-control " type="password" name="confirmation" placeholder="Confirm Password">
+                </div>
+                <button type="submit" class="btn btn-success rounded-pill" style="width: 100%;">Continue</button>
+              </form>
+
+              <div class="hr-sect">OR</div>
+              <p  class="text-white text-center">Already on Spotifys? <span id = 'login' style="text-decoration: underline;">LOGIN</span></p>
+              
+            </div>
+
+              </div>
+      
+        </div>
+            </div>
+          
+          </div>
+    </div>
+</div>
+
+    {% endif %}
+    </div>
+    
+   
+{% endblock %}
